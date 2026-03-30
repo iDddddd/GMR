@@ -272,10 +272,11 @@ class GeneralMotionRetargeting:
             pos, quat = human_data[body_name]
             offset_human_data[body_name] = [pos, quat]
             # apply rotation offset first
-            updated_quat = (R.from_quat(quat, scalar_first=True) * rot_offsets[body_name]).as_quat(scalar_first=True)
+            rot_offset = rot_offsets.get(body_name, R.identity())
+            updated_quat = (R.from_quat(quat, scalar_first=True) * rot_offset).as_quat(scalar_first=True)
             offset_human_data[body_name][1] = updated_quat
             
-            local_offset = pos_offsets[body_name]
+            local_offset = pos_offsets.get(body_name, np.zeros(3))
             # compute the global position offset using the updated rotation
             global_pos_offset = R.from_quat(updated_quat, scalar_first=True).apply(local_offset)
             

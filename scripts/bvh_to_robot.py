@@ -60,6 +60,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
+        "--velocity_limit",
+        action="store_true",
+        default=False,
+        help="Enable IK joint velocity limits (often reduces jitter).",
+    )
+
+    parser.add_argument(
         "--save_path",
         default=None,
         help="Path to save the robot motion.",
@@ -89,6 +96,7 @@ if __name__ == "__main__":
         src_human=f"bvh_{args.format}",
         tgt_robot=args.robot,
         actual_human_height=actual_human_height,
+        use_velocity_limit=args.velocity_limit,
     )
 
     motion_fps = args.motion_fps
