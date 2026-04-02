@@ -5,21 +5,27 @@
     "human_height_assumption": 1.8,
     "use_ik_match_table1": true,
     "use_ik_match_table2": false,
+    "posture_weights": {
+        "left_wrist_pitch_joint": 5.0,
+        "left_wrist_roll_joint": 5.0,
+        "right_wrist_pitch_joint": 5.0,
+        "right_wrist_roll_joint": 5.0
+    },
     "human_scale_table": {
-        "Hips": 0.9,
-        "Spine2": 0.9,
-        "LeftUpLeg": 1.0,
-        "RightUpLeg": 1.0,
-        "LeftLeg": 0.9,
-        "RightLeg": 0.9,
-        "LeftFootMod": 0.9,
-        "RightFootMod": 0.9,
-        "LeftArm": 0.75,
-        "RightArm": 0.75,
-        "LeftForeArm": 0.75,
-        "RightForeArm": 0.75,
-        "LeftHand": 0.9,
-        "RightHand": 0.9
+        "Hips": 0.76,
+        "Spine2": 0.7,
+        "LeftUpLeg": 0.73,
+        "RightUpLeg": 0.73,
+        "LeftLeg": 0.73,
+        "RightLeg": 0.73,
+        "LeftFootMod": 0.73,
+        "RightFootMod": 0.73,
+        "LeftArm": 0.73,
+        "RightArm": 0.73,
+        "LeftForeArm": 0.73,
+        "RightForeArm": 0.73,
+        "LeftHand": 0.73,
+        "RightHand": 0.73
     },
     "ik_match_table1": {
         "pelvis": [
@@ -184,12 +190,12 @@
         ],
         "left_wrist_yaw_link": [
             "LeftHand",
-            50,
-            3,
+            0,
+            0,
             [
                 0.0,
                 0.0,
-                0.05
+                0.0
             ],
             [
                 0.70710678,
@@ -200,8 +206,8 @@
         ],
         "left_wrist_roll_link": [
             "LeftHand",
-            0,
-            0,
+            30,
+            2.5,
             [
                 0.0,
                 0.0,
@@ -237,7 +243,7 @@
             [
                 0.0,
                 0.0,
-                0.05
+                0.0
             ],
             [
                 0.70710678,
@@ -248,8 +254,8 @@
         ],
         "right_wrist_yaw_link": [
             "RightHand",
-            50,
-            3,
+            0,
+            0,
             [
                 0.0,
                 0.0,
@@ -264,18 +270,18 @@
         ],
         "right_wrist_roll_link": [
             "RightHand",
-            0,
-            0,
+            30,
+            2.5,
             [
                 0.0,
                 0.0,
                 0.0
             ],
             [
+                0.70710678,
+                0.70710678,
                 0.0,
-                0.0,
-                -0.70710678,
-                0.70710678
+                0.0
             ]
         ]
 
@@ -531,10 +537,10 @@
                 0.0
             ],
             [
+                0.70710678,
+                0.70710678,
                 0.0,
-                0.0,
-                -0.70710678,
-                0.70710678
+                0.0
             ]
         ]
     }

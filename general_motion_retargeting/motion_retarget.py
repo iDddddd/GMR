@@ -99,6 +99,8 @@ class GeneralMotionRetargeting:
         if use_velocity_limit:
             VELOCITY_LIMITS = {k: 3*np.pi for k in self.robot_motor_names.keys()}
             self.ik_limits.append(mink.VelocityLimit(self.model, VELOCITY_LIMITS)) 
+        # posture weights: optional per-joint regularization toward default pose
+        self.posture_weights = ik_config.get("posture_weights", {})
             
         self.setup_retarget_configuration()
         
@@ -109,6 +111,18 @@ class GeneralMotionRetargeting:
     
         self.tasks1 = []
         self.tasks2 = []
+
+        # Add posture task if posture_weights are specified
+        if self.posture_weights:
+            cost = np.zeros(self.model.nv)
+            for joint_name, weight in self.posture_weights.items():
+                jnt_id = mj.mj_name2id(self.model, mj.mjtObj.mjOBJ_JOINT, joint_name)
+                if jnt_id >= 0:
+                    dof_idx = self.model.jnt_dofadr[jnt_id]
+                    cost[dof_idx] = weight
+            self.posture_task = mink.PostureTask(self.model, cost=cost)
+            self.posture_task.set_target_from_configuration(self.configuration)
+            self.tasks1.append(self.posture_task)
         
         for frame_name, entry in self.ik_match_table1.items():
             body_name, pos_weight, rot_weight, pos_offset, rot_offset = entry
